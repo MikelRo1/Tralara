@@ -30,6 +30,91 @@
 		<jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" includes="**/ICancionF.class, **/IPagoF.class, **/IUsuarioF.class, **/**DTO.class"/>
 																			
 	</target>	
+	
+	<!-- TARGET : clean -->
+	<!--
+    <target name="clean">
+        <delete includeEmptyDirs="true" quiet="true">
+            <fileset dir="${bin.dir}" includes="**/*.*"/>
+        </delete>
+		<delete dir="${bin.dir}"/>
+    </target>
+	-->
+	<!-- TARGET : prepare -->
+	<!--
+    <target name="prepare">
+        <mkdir dir="${bin.dir}"/>
+    </target>
+	-->
+    <!-- TARGET : compile -->
+	<!--
+	<target name="compile" depends="clean, prepare">
+        <javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="no">
+            <include name="**/*.java"/>
+         </javac>
+    </target>
+	-->
+    <!-- TARGET : enhance -->
+	<!--
+	<target name="enhance" depends="compile">
+    	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask" />
+    	
+   		<enhancer classpathref="classpath" failonerror="true">
+            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+            <fileset dir="${bin.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+   		</enhancer>
+    </target>
+	-->
+    <!-- TARGET : SchemaTool "create" -->
+	<!--
+	<target name="createschema" depends="enhance">
+        <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+
+    	<schematool mode="create" classpathref="classpath" failonerror="true" props="datanucleus.properties">
+            <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+            <fileset dir="${bin.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </schematool>
+    </target>
+	-->
+    <!-- TARGET : SchemaTool "delete" -->
+	<!--
+	<target name="deleteschema">
+        <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+
+    	 	<schematool mode="delete" classpathref="classpath" failonerror="true" props="datanucleus.properties">            
+    	      <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+    	 		<fileset dir="${bin.dir}">
+                <include name="**/*.class"/>
+            </fileset>
+        </schematool>
+    </target>
+	-->
+	 <!-- SchemaTool "dbinfo" -->
+	<!--    
+	<target name="schemainfo">
+	    	<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
+	    	
+	        <schematool mode="dbinfo" classpathref="classpath" failonerror="true" props="datanucleus.properties">
+	        	 <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
+	        	<fileset dir="${bin.dir}">
+	                <include name="**/*.class"/>
+	            </fileset>
+       
+	        </schematool>
+	    </target>
+	-->
+    <!-- TARGET : Run -->	
+	<!--
+	<target name="run" depends="createschema">
+        <java classname="server.dao.DAOTest_Copies" classpathref="classpath" fork="true">
+        	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
+		</java>
+    </target>
+	-->
     
 	<target name="server" depends="build" description="Runs Server program">
 		<java classname="server.MainPrograma" classpath="${classpath}" fork="true">

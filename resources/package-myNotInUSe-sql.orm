@@ -1,56 +1,106 @@
 <?xml version="1.0"?>
 <!DOCTYPE orm SYSTEM "file:/javax/jdo/orm.dtd">
 <orm>
-    <package name="es.deusto.ingenieria.sd.datanucleus.jdo.data">    
-        <class name="Product">
-            <field name="name">
-                <column length="100" jdbc-type="VARCHAR"/>
+    <package name="server.data.data">    
+        <class name="Usuario">
+            <field name="usuario">
+                <column length="10" jdbc-type="VARCHAR"/>
             </field>
-            <field name="description">
-                <column length="255" jdbc-type="VARCHAR"/>
+            <field name="nombreUsuario">
+                <column length="20" jdbc-type="VARCHAR"/>
             </field>
-          <field name="price">
-                <column jdbc-type="DOUBLE"/>
+            <field name="apellidoUsuario">
+                <column length="20" jdbc-type="VARCHAR"/>
+            </field>
+          <field name="tipocuenta">
+                <column jdbc-type="FLOAT"/>
             </field>
         </class>
 
-        <class name="Book">
-            <inheritance strategy="new-table"/>
-            <field name="author">
+        <class name="Cancion">
+             <field name="idCancion">
+            </field>
+            <field name="tituloCancion">
                 <column length="40" jdbc-type="VARCHAR"/>
             </field>
-            <field name="isbn">
-                <column length="20" jdbc-type="CHAR"/>
+            <field name="duracionCancion">
+                <column jdbc-type="FLOAT"/>
             </field>
-            <field name="publisher">
-                <column length="40" jdbc-type="VARCHAR"/>
+            <field name="fechalanzamientoCancion">
+                <column length="10" jdbc-type="VARCHAR"/>
             </field>
-            <field name="copies" default-fetch-group="true">
-            	<collection element-type="es.deusto.ingenieria.sd.datanucleus.jdo.data.Copy" dependent-element="true"/>
-            	<join/>
-        	</field>
+            <field name="preciodiaCancion">
+                <column length="2" jdbc-type="INTEGER"/>
+            </field>
+            <field name="letraCancion">
+                <column length="255" jdbc-type="VARCHAR"/>
+            </field>
          </class>
 		        	 
-        <class name="Copy">
-            <field name="copyNum">
-                <column length="128" jdbc-type="VARCHAR"/>
+        <class name="Pago">
+            <field name="fecha">
+                <column length="10" jdbc-type="VARCHAR"/>
             </field>
-			<field name="state">
-                <column length="128" jdbc-type="VARCHAR"/>
+            <field name="cantidad">
+                <column length="4" jdbc-type="INTEGER"/>
             </field>
-            <field name="book">               
+            <field name="ventajoso">               
             </field>
-            <field name="shelf" default-fetch-group="true">               
+            <field name="comun">               
             </field>
+			
 		</class>
-		
-		<class name="Shelf">
-            <field name="identifier">
+
+        <class name="Ventajoso">
+            <inheritance strategy="new-table"/>
+            <field name="pagos" default-fetch-group="true">
+                <collection element-type="server.data.data.Pago" dependent-element="true"/>
+                <join/>
             </field>
-            <field name="copies" default-fetch-group="true">
-            	<collection element-type="es.deusto.ingenieria.sd.datanucleus.jdo.data.Copy"/>
-            	<join/>
-        	</field>
+            
+        </class>
+
+        <class name="Comun">
+            <inheritance strategy="new-table"/>
+            <field name="pagos" default-fetch-group="true">
+                <collection element-type="server.data.data.Pago" dependent-element="true"/>
+                <join/>
+            </field>
+            
+        </class>
+
+
+		<class name="Album">
+            <field name="idAlbum">
+            </field>
+            <field name="nombreAlbum">
+                <column length="50" jdbc-type="VARCHAR"/>
+            </field>
+            <field name="fechaAlbum">
+                <column length="10" jdbc-type="VARCHAR"/>
+            </field>
+         </class>
+
+         <class name="Lista">
+            <field name="idLista">
+            </field>
+            <field name="nombreLista">
+                <column length="50" jdbc-type="VARCHAR"/>
+            </field>
+         </class>
+
+         <class name="Artista">
+            <field name="idArtista">
+            </field>
+            <<field name="nombreArtista">
+                <column length="50" jdbc-type="VARCHAR"/>
+            </field>
+            <field name="paisArtista">
+                <column length="50" jdbc-type="VARCHAR"/>
+            </field>
+            <field name="edadArtista">
+                <column length="2" jdbc-type="INTEGER"/>
+            </field>
          </class>
 		 
     </package>
