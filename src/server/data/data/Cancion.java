@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Cancion 
+public class Cancion implements Serializable
 {
 	int idCancion;
 	String tituloCancion;

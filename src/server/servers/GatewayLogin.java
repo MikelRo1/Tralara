@@ -2,11 +2,13 @@ package server.servers;
 
 import java.util.ArrayList;
 
+import server.data.dto.UsuarioDTO;
+
 public class GatewayLogin implements ILogin{
 	
 	static ServidorLogin server;
 
-	private GatewayLogin() {
+	public GatewayLogin() {
 		
 		server = new ServidorLogin();
 	}
@@ -15,17 +17,19 @@ public class GatewayLogin implements ILogin{
 		//comprobar en la BD que el nombre de usuario es correcto
 		
 		//comprobar en el servidor externo que el nombre de usuario y contraseña son correctas
-		//ArrayList<String> usuarios = new ArrayList<String>();
-		//usuarios = server.devolverUsuarios();
-		
+		int a = 0;
+		ServidorLogin server = new ServidorLogin(); //
 		for (int i=0; i<server.devolverUsuarios().size(); i++)
 		{
-			if (server.devolverUsuarios().get(i) == usuario)
-				// Personas.get(i).getNombre();
+			if (usuario.equals(server.devolverUsuarios().get(i).getNombre()) && contrasenya.equals(server.devolverUsuarios().get(i).getPassword()))
 			{
 				System.out.println("bai");
+				a = 1;
 			}
 		}
+		
+		if (a==0) System.out.println("ez");	
+		if (a==1) System.out.println("bai");	
 	}
 	
 	public void registrarse(String usuario, String contrasenya) {
@@ -36,7 +40,9 @@ public class GatewayLogin implements ILogin{
 	
 	public static void main(String[] args)
 	{
-		loginA("aa", "cc");
+		ServidorLogin server = new ServidorLogin();
+		server.login("aa", "bb");
+		//loginA("aa", "bb");
 		
 	}
 

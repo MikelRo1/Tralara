@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Usuario 
+public class Usuario implements Serializable
 {
 	String usuario;
 	String nombreUsuario;

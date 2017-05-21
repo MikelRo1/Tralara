@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Reproduccion 
+public class Reproduccion implements Serializable
 {
 	
 

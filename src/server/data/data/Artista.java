@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Artista 
+public class Artista implements Serializable
 {
 	int idArtista;
 	String nombreArtista;

@@ -1,7 +1,20 @@
 package server.data.data;
 
+//import javax.jdo.annotations.PersistenceCapable;
 
-public class Pago 
+import java.io.Serializable;
+
+//import javax.jdo.annotations.Inheritance;
+//import javax.jdo.annotations.InheritanceStrategy;
+
+/*
+ * Part 2 (RMI) Remember that in order to transfer objects they must have a special feature
+ */
+
+//@PersistenceCapable(detachable="true")
+//@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
+
+public class Pago implements Serializable
 {
 	String fecha;
 	int cantidad;

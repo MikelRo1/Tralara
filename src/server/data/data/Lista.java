@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Lista 
+public class Lista implements Serializable
 {
 	int idLista;
 	String nombreLista;

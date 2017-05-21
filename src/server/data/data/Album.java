@@ -1,7 +1,8 @@
 package server.data.data;
 
+import java.io.Serializable;
 
-public class Album 
+public class Album implements Serializable
 {
 	int idAlbum;
 	String nombreAlbum;
