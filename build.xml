@@ -5,14 +5,17 @@
    	<property name="build.dir" location="bin"/>
 	<property name="dist.dir" location="dist"/>
 	<property name="classpath" location="bin"/>
-	<property name="export.file" value="CancionFacade.jar"/>
+	<property name="export.file" value="Tralala.jar"/>
 	<property name="server.port" value="1099"/> 
 	<property name="server.IP" value="127.0.0.1"/> 
-	<property name="server" value="nombre"/>
+	<property name="server.Name" value="Tralala"/>
 	<property name="policy.file" location="security/java.policy"/>	
-
+	<property name="persistenceUnit" value="tralalaJDO"/>
+	<property name="resources.dir" location="resources"/>
+	<property name="lib.dir" location="lib"/>
+	
 	<target name="help">
-		<echo>Usage: ant [build | export | server1 | server2 ]</echo>
+		<echo>Usage: ant [build | export | server]</echo>
 	</target>
 	
 	<target name="build" description="Builds the project">
@@ -29,7 +32,7 @@
 	</target>	
     
 	<target name="server" depends="build" description="Runs Server program">
-		<java classname="server.remote.CancionFacade" classpath="${classpath}" fork="true">
+		<java classname="server.MainPrograma" classpath="${classpath}" fork="true">
         	<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
         	<arg value="${server.IP}"/> 
