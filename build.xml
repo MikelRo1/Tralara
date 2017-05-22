@@ -32,30 +32,30 @@
 	</target>	
 	
 	<!-- TARGET : clean -->
-	<!--
+	
     <target name="clean">
         <delete includeEmptyDirs="true" quiet="true">
             <fileset dir="${bin.dir}" includes="**/*.*"/>
         </delete>
 		<delete dir="${bin.dir}"/>
     </target>
-	-->
+	
 	<!-- TARGET : prepare -->
-	<!--
+	
     <target name="prepare">
         <mkdir dir="${bin.dir}"/>
     </target>
-	-->
+	
     <!-- TARGET : compile -->
-	<!--
+	
 	<target name="compile" depends="clean, prepare">
         <javac srcdir="${src.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="no">
             <include name="**/*.java"/>
          </javac>
     </target>
-	-->
+	
     <!-- TARGET : enhance -->
-	<!--
+	
 	<target name="enhance" depends="compile">
     	<taskdef name="enhancer" classpathref="classpath" classname="org.datanucleus.enhancer.EnhancerTask" />
     	
@@ -66,9 +66,9 @@
             </fileset>
    		</enhancer>
     </target>
-	-->
+	
     <!-- TARGET : SchemaTool "create" -->
-	<!--
+	
 	<target name="createschema" depends="enhance">
         <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
 
@@ -79,9 +79,9 @@
             </fileset>
         </schematool>
     </target>
-	-->
+	
     <!-- TARGET : SchemaTool "delete" -->
-	<!--
+	
 	<target name="deleteschema">
         <taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
 
@@ -92,9 +92,9 @@
             </fileset>
         </schematool>
     </target>
-	-->
+	
 	 <!-- SchemaTool "dbinfo" -->
-	<!--    
+	
 	<target name="schemainfo">
 	    	<taskdef name="schematool" classpathref="classpath" classname="org.datanucleus.store.schema.SchemaToolTask"/>
 	    	
@@ -106,18 +106,18 @@
        
 	        </schematool>
 	    </target>
-	-->
+	
     <!-- TARGET : Run -->	
-	<!--
+	
 	<target name="run" depends="createschema">
         <java classname="server.dao.DAOTest_Copies" classpathref="classpath" fork="true">
         	<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		</java>
     </target>
-	-->
+
     
 	<target name="server" depends="build" description="Runs Server program">
-		<java classname="server.MainPrograma" classpath="${classpath}" fork="true">
+		<java classname="server.servers.ServidorLogin" classpath="${classpath}" fork="true">
         	<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
 			<jvmarg value="-Djava.security.policy=${policy.file}"/>			
         	<arg value="${server.IP}"/> 
