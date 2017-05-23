@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Cancion implements Serializable
 {
 	int idCancion;
+	//
 	String tituloCancion;
 	float duracionCancion;
 	String fechalanzamientoCancion;
