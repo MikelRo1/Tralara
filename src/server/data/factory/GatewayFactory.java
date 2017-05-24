@@ -21,7 +21,7 @@ public class GatewayFactory {
 	
 			
 		public IPago crearGateway(String tipo){
-			if(tipo.equals("PayPal")){ // Se le pasara por el CheckBox del GUI
+			if(tipo.equals("PayPal")){ // nundik bialtzea?
 			
 				return new GatewayPayPal();
 			}
