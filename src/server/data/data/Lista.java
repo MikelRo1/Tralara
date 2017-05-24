@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 
 @PersistenceCapable(detachable = "true")
-public class Lista implements Serializable
+public class Lista
 {
 	int idLista;
 	String nombreLista;

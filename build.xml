@@ -119,7 +119,7 @@
 	
 	<!-- TARGET : Running the Server -->	
 		<target name="runServer" depends="createschema" description="Runs the Server">
-				<java classname="sserver.servers.ServidorLogin" classpathref="classpath" fork="true">
+				<java classname="server.jdo.remote.FinderServer" classpathref="classpath" fork="true">
 					<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
 					<jvmarg value="-Djava.security.policy=${policy.file}"/>		
 					<jvmarg value="-Dlog4j.configuration=log4j.properties"/>

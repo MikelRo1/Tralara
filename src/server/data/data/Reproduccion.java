@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 
 @PersistenceCapable(detachable = "true")
-public class Reproduccion implements Serializable
+public class Reproduccion
 {
 	
 	protected Pago subject;

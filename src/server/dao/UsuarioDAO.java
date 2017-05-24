@@ -12,7 +12,7 @@ import javax.jdo.Transaction;
 
 import server.data.data.Usuario;
 
-public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
+public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
 
 	//private List<Usuario> usuariosCache;
 	private PersistenceManagerFactory pmf;
@@ -27,20 +27,16 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
 	@Override
 	public void storeUsario(Usuario usu) {
 		// TODO Auto-generated method stub
-		this.storeObject(usu);
-	}
-	
-	private void storeObject(Object object) {
 		PersistenceManager pm = (PersistenceManager) pmf.getPersistenceManager();
 	    Transaction tx = ((javax.jdo.PersistenceManager) pm).currentTransaction();
 	   
 	    try {
 	       tx.begin();
-	       System.out.println("   * Storing an object: " + object);
-	       ((javax.jdo.PersistenceManager) pm).makePersistent(object);
+	       System.out.println("   * Storing an user: " + usu.getNombreUsuario());
+	       ((javax.jdo.PersistenceManager) pm).makePersistent(usu);
 	       tx.commit();
 	    } catch (Exception ex) {
-	    	System.out.println("   $ Error storing an object: " + ex.getMessage());
+	    	System.out.println("   $ Error storing an usuario: " + ex.getMessage());
 	    } finally {
 	    	if (tx != null && tx.isActive()) {
 	    		tx.rollback();
@@ -59,16 +55,16 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
 		((javax.jdo.PersistenceManager) pm).getFetchPlan().setMaxFetchDepth(3);
 		
 		Transaction tx = ((javax.jdo.PersistenceManager) pm).currentTransaction();
-		List<Usuario> products = new ArrayList<>();
+		List<Usuario> usu = new ArrayList<>();
 		
 		try {
-			System.out.println("   * Retrieving an Extent for Products.");
+			System.out.println("   * Retrieving an Extent for Usuarios.");
 			
 			tx.begin();			
 			Extent<Usuario> extent = ((javax.jdo.PersistenceManager) pm).getExtent(Usuario.class, true);
 			
 			for (Usuario product : extent) {
-				products.add(product);
+				usu.add(product);
 			}
 
 			tx.commit();			
@@ -82,7 +78,7 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
     		((javax.jdo.PersistenceManager) pm).close();    		
 	    }
 	    				
-		return products;
+		return usu;
 	}
 	
 	public Usuario getUsu(String name){
@@ -96,7 +92,7 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
 			System.out.println ("   * Querying a Product: " + name);
 			
 	    	tx.begin();
-	    	Query query = ((javax.jdo.PersistenceManager) pm).newQuery("SELECT FROM " + Usuario.class.getName() + " WHERE name == '" + name + "'");
+	    	Query query = ((javax.jdo.PersistenceManager) pm).newQuery("SELECT FROM " + Usuario.class.getName() + " WHERE usuario == '" + name + "'");
 	    	query.setUnique(true);
 	    	usu = (Usuario)query.execute();	    
  	    	tx.commit();
@@ -117,7 +113,7 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO{
 
 
 	@Override
-	public void updateUsuario(Usuario product) {
+	public void updateUsuario(Usuario usu) {
 		// TODO Auto-generated method stub
 		
 	}	

@@ -220,22 +220,7 @@ public class DBManager {
 		}
 	}
 	
-	protected static void updateUsuarioTest(IUsuarioDAO usuDAO) {	
-		/*
-		try {					
-			
-			Usuario usu = usuDAO.getUsu("Sony Xperia");
-			System.out.println(" - Detaching and updating a product: " + usu);			
-			usu.setDescription("Reduced Priced Mobile");
-			usuDAO.updateUsuario(usu);
-			System.out.println("     - Attaching a product after changing description: " + usu);
-			
-		} catch (Exception ex) {
-			System.out.println(" $ Error detaching-attaching: " + ex.getMessage());
-		}
-		*/
-	}
-	
+
 	
 	public static void main(String[] args) {
 		IUsuarioDAO usuDAO = new UsuarioDAO();		

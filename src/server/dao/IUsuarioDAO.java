@@ -9,6 +9,6 @@ public interface IUsuarioDAO {
 	public List<Usuario> getUsuarios();
 	public Usuario getUsu(String name);
 	public void storeUsario(Usuario usu);
-	public void updateUsuario(Usuario product);
+	public void updateUsuario(Usuario usu);
 	//public void deleteAllUsuarios();
 }
