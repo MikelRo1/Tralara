@@ -20,6 +20,7 @@ public class GatewayLogin implements ILogin{
 		server = new ServidorLogin(socket);
 	}
 	
+	/*
 	public static void loginA(String usuario, String contrasenya) {
 		//comprobar en la BD que el nombre de usuario es correcto
 		
@@ -38,6 +39,8 @@ public class GatewayLogin implements ILogin{
 		if (a==0) System.out.println("ez");	
 		if (a==1) System.out.println("bai");	
 	}
+	
+	*/
 	
 	public static void main(String args[]) {
 		

@@ -2,6 +2,9 @@ package server.data.data;
 
 import java.io.Serializable;
 
+import javax.jdo.annotations.PersistenceCapable;
+
+@PersistenceCapable(detachable = "true")
 public class Usuario implements Serializable
 {
 	String usuario;
@@ -9,8 +12,7 @@ public class Usuario implements Serializable
 	String apellidoUsuario;
 	float tipocuenta;
 	
-	public Usuario(String usuario, String nombreUsuario,
-			String apellidoUsuario, float tipocuenta) {
+	public Usuario(String usuario, String nombreUsuario, String apellidoUsuario, float tipocuenta) {
 		super();
 		this.usuario = usuario;
 		this.nombreUsuario = nombreUsuario;

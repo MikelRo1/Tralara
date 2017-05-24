@@ -6,16 +6,17 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//import javax.jdo.annotations.Inheritance;
-//import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+import javax.jdo.annotations.PersistenceCapable;
 
 /*
  * Part 2 (RMI) Remember that in order to transfer objects they must have a special feature
  */
 
-//@PersistenceCapable(detachable="true")
-//@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 
+@PersistenceCapable(detachable="true")
+@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Pago implements Serializable
 {
 	String fecha;

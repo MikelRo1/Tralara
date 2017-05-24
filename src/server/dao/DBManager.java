@@ -6,12 +6,11 @@ import java.util.List;
 import server.data.data.Album;
 import server.data.data.Artista;
 import server.data.data.Cancion;
-import server.data.data.Comun;
 import server.data.data.Lista;
 import server.data.data.Pago;
 import server.data.data.Reproduccion;
 import server.data.data.Usuario;
-import server.data.data.Ventajoso;
+import server.dao.IUsuarioDAO;
 
 public class DBManager {
 	
@@ -103,11 +102,7 @@ public class DBManager {
 		return true;
 	}
 
-	public boolean store(Usuario Usuario) {
-		this.usuariosCache.add(Usuario);
-		
-		return true;
-	}
+	
 	
 	public boolean store(Cancion cancion) {
 		this.cancionCache.add(cancion);
@@ -180,4 +175,154 @@ public class DBManager {
 		
 		return null;
 	}
+	
+	
+	
+	
+	protected static void createUsuarioTest(IUsuarioDAO usuDAO) {		
+		try {
+			System.out.println(" - Creating usuario ... ");
+			Usuario usu = new Usuario("aa", "bb", "cc", 1111);
+			usuDAO.storeUsario(usu);
+			
+		} catch (Exception ex) {
+			System.out.println(" $ Error creating a user: " + ex.getMessage());
+		}
+	}
+	
+	/*
+	protected static void createBookTest(IProductDAO productDAO) {
+		try {
+			System.out.println(" - Creating 2 new books ... ");
+			Book book = new Book("The Hobbit", "Basic Edition", 60d, "J.R.R. Tolkien", "0-321-12722-0", "Oxford Press");
+			Book book1 = new Book("Dracula", "Paperback Edition", 5d, "Bram Stoker", "0-342-232345-0", "Dover Publishing");
+			Shelf shelf= new Shelf("First Shelf");
+			book.addCopy("2", "Perfect, almost new", shelf);
+			book1.addCopy("4", "Scratches on front cover", shelf);
+			book1.addCopy("6", "Reasonable", shelf);
+			productDAO.storeProduct(book);
+			productDAO.storeProduct(book1);
+		} catch (Exception ex) {
+			System.out.println(" $ Creating a new book: " + ex.getMessage());
+		}
+	}
+	*/
+	
+	protected static void getAllUsuariosTest(IUsuarioDAO usuDAO) {		
+		try {
+			List<Usuario> usuarios = usuDAO.getUsuarios();
+			System.out.println("     - Mixture of Products and Books ...");
+			for (Usuario usuAux: usuarios){
+				System.out.println("        # " + usuAux);
+			}
+		} catch (Exception ex) {
+			System.out.println(" $ Error getting Mixture of Products and Books: " + ex.getMessage());
+		}
+	}
+	
+	protected static void updateUsuarioTest(IUsuarioDAO usuDAO) {	
+		/*
+		try {					
+			
+			Usuario usu = usuDAO.getUsu("Sony Xperia");
+			System.out.println(" - Detaching and updating a product: " + usu);			
+			usu.setDescription("Reduced Priced Mobile");
+			usuDAO.updateUsuario(usu);
+			System.out.println("     - Attaching a product after changing description: " + usu);
+			
+		} catch (Exception ex) {
+			System.out.println(" $ Error detaching-attaching: " + ex.getMessage());
+		}
+		*/
+	}
+	
+	
+	public static void main(String[] args) {
+		IUsuarioDAO usuDAO = new UsuarioDAO();		
+		
+		
+		createUsuarioTest(usuDAO);
+		/*createBookTest(productDAO);
+		getAllProductsTest(productDAO);
+		
+		updateProductTest(productDAO);
+		updateBookTest(productDAO);
+		
+		checkCopiesTest(productDAO);
+
+		updateCopyShelf(productDAO);
+		
+		deleteAllObjects(productDAO);
+		*/
+			
+		
+	}
+	
+	
+	
+	/*
+	protected static void updateBookTest(IProductDAO productDAO) {
+		try {
+			List<Book> books = productDAO.getBooks();
+			
+			if (!books.isEmpty()) { 
+				Book book = books.get(0);			
+		
+				System.out.println(" - Updating book copies (new copy in new shelf): " + book);		
+				Shelf shelf = new Shelf ("Second Shelf");
+				book.addCopy("5", "Good state", shelf);		
+				productDAO.updateProduct(book);
+				System.out.println("   * New copy in new shelf added: " + book);
+			
+			}
+		} catch (Exception ex) {
+			System.out.println(" $ Error retrieving the updated book: " + ex.getMessage());
+		}		
+	}
+	
+	protected static void checkCopiesTest(IProductDAO productDAO) {
+		try {
+					
+				Book updatedBook = (Book)productDAO.getProduct("Dracula");		
+				System.out.println("   * Retrieving updated book: " + updatedBook);
+				System.out.println("   * Number of copies of this book: " + updatedBook.getCopies().size());
+				
+			
+				for (Copy copy: updatedBook.getCopies()){
+					System.out.println("     # " + copy);
+				} 
+	
+		} catch (Exception ex) {
+			System.out.println(" $ Error retrieving updated book: " + ex.getMessage());
+		}		
+	}
+	
+	protected static void updateCopyShelf(IProductDAO productDAO) {
+		try {
+			
+			Book updatedBook = (Book)productDAO.getProduct("The Hobbit");		
+			System.out.println("   * Retrieving updated book: " + updatedBook);
+			
+			Shelf existingShelf = (Shelf)productDAO.getShelf("First Shelf");
+			System.out.println(" - Adding a new copy to an existing shelf: " + existingShelf.getIdentifier());		
+			updatedBook.addCopy("7", "Bad state", existingShelf);		
+			productDAO.updateProduct(updatedBook);
+			System.out.println("   * New copy added to an existing shelf : " + updatedBook);
+			
+		} catch (Exception ex) {
+			System.out.println(" $ Error retrieving updated a book: " + ex.getMessage());
+		}		
+	}
+	
+	 protected static void deleteAllObjects(IUsuarioDAO productDAO) {
+	
+		 try {
+				
+			 	productDAO.deleteAllUsuarios();	
+				System.out.println("   ==== DB emptied ====    ");
+				
+			} catch (Exception ex) {
+				System.out.println(" $ Error emptying DB: " + ex.getMessage());
+			}		
+	 }*/
 }

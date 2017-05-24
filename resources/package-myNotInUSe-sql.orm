@@ -51,23 +51,7 @@
 			
 		</class>
 
-        <class name="Ventajoso">
-            <inheritance strategy="new-table"/>
-            <field name="pagos" default-fetch-group="true">
-                <collection element-type="server.data.data.Pago" dependent-element="true"/>
-                <join/>
-            </field>
-            
-        </class>
-
-        <class name="Comun">
-            <inheritance strategy="new-table"/>
-            <field name="pagos" default-fetch-group="true">
-                <collection element-type="server.data.data.Pago" dependent-element="true"/>
-                <join/>
-            </field>
-            
-        </class>
+        
 
 
 		<class name="Album">
