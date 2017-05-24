@@ -9,7 +9,7 @@ public class PagoAssembler {
 	private PagoAssembler() { }
 
 
-//assembler-an instantzia itea ez dakit beharrezkoa dan//
+	//lazy instantiation to create the singleton//
 
 	public static PagoAssembler getInstance() {
 		if (instance == null) {

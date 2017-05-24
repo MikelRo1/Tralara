@@ -9,7 +9,7 @@ public class UsuarioAssembler {
 
 	private UsuarioAssembler() { }
 
-	//assembler-an instantzia itea ez dakit beharrezkoa dan//
+	//lazy instantiation to create the singleton//
 	
 	public static UsuarioAssembler getInstance() {
 		if (instance == null) {

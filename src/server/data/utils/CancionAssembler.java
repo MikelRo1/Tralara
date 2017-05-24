@@ -9,7 +9,7 @@ public class CancionAssembler {
 	private CancionAssembler() { }
 
 
-//assembler-an instantzia itea ez dakit beharrezkoa dan, hau ustet singleton-eako dala//
+	//lazy instantiation to create the singleton//
 
 	public static CancionAssembler getInstance() {
 		if (instance == null) {

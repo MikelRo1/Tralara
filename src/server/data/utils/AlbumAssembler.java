@@ -5,11 +5,11 @@ import server.data.dto.AlbumDTO;
 
 public class AlbumAssembler {
 
-	private static AlbumAssembler instance;
+	private static AlbumAssembler instance; //null jarri behar da edo ez?//
 	private AlbumAssembler() { }
 
 
-//assembler-an instantzia itea ez dakit beharrezkoa dan//
+//lazy instantiation to create the singleton//
 
 	public static AlbumAssembler getInstance() {
 		if (instance == null) {

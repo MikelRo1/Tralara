@@ -9,7 +9,7 @@ public class ArtistaAssembler {
 	private ArtistaAssembler() { }
 
 
-//assembler-an instantzia itea ez dakit beharrezkoa dan//
+	//lazy instantiation to create the singleton//
 
 	public static ArtistaAssembler getInstance() {
 		if (instance == null) {
