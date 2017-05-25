@@ -11,7 +11,7 @@ public class ArtistaAssembler {
 
 	//lazy instantiation to create the singleton//
 
-	public static ArtistaAssembler getInstance() {
+	public  static synchronized ArtistaAssembler getInstance() {
 		if (instance == null) {
 			instance = new ArtistaAssembler();
 		}

@@ -11,7 +11,7 @@ public class UsuarioAssembler {
 
 	//lazy instantiation to create the singleton//
 	
-	public static UsuarioAssembler getInstance() {
+	public static synchronized UsuarioAssembler getInstance() {
 		if (instance == null) {
 			instance = new UsuarioAssembler();
 		}
