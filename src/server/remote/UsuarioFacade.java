@@ -28,16 +28,12 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF{
 		List<Usuario> array = objeto.getUsuarios();
 		for (int i = 0; i<array.size();i++)
 		{
-			if(user.equals(array[i].getNombre()))
+			if(user.equals(array.get(i).getNombreUsuario()))
 			{
 				return true;
 			}
-			else
-			{
-				return false;
-			}
 		}
-		
+		return false;	
 	}
 	
 	public boolean checkUserSE(String user)

@@ -14,6 +14,7 @@ public interface ICancionF {
 	public ArtistaDTO getArtistaDTO() throws RemoteException;
 	public AlbumDTO getAlbumDTO() throws RemoteException;
 	public void addFav(int cancion);
+	public void reproducirCancion(int cancion);
 
 }
 

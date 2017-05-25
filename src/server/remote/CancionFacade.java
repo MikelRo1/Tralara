@@ -52,5 +52,10 @@ public class CancionFacade extends UnicastRemoteObject implements ICancionF{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void reproducirCancion(int cancion)
+	{
+		//AQUI SE REPRODUCE LA CANCIÓN
+	}
 
 }
