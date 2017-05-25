@@ -7,7 +7,7 @@ import server.data.dto.UsuarioDTO;
 
 public interface IUsuarioF {
 	
-	public boolean checkAddUser() throws RemoteException;
+	public boolean checkAddUser(String user) throws RemoteException;
 	public ArrayList<UsuarioDTO> getUsuarioDTO() throws RemoteException;
 
 }
