@@ -8,16 +8,9 @@ import javax.jdo.annotations.PersistenceCapable;
 public class Reproduccion
 {
 	
-	protected Pago subject;
 	
-	public Reproduccion(Pago subject){
-	      this.subject = subject;
-	      this.subject.attach(this);
-	   }
 
 	
-	   public void update() {
-	      System.out.println(subject.getState()); 
-	   }
+	  
 
 }

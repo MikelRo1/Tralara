@@ -8,7 +8,9 @@
 	<property name="export.file" value="Tralala.jar"/>
 	<property name="server.port" value="1099"/> 
 	<property name="server.IP" value="127.0.0.1"/> 
-	<property name="server.Name" value="Tralala"/>
+	<property name="server.Usuario" value="TralalaUsuario"/>
+	<property name="server.Cancion" value="TralalaCancion"/>
+	<property name="server.Pago" value="TralalaPago"/>
 	<property name="policy.file" location="security/java.policy"/>	
 	<property name="persistenceUnit" value="tralalaJDO"/>
 	<property name="resources.dir" location="resources"/>
@@ -118,14 +120,16 @@
 	    </target>	
 	
 	<!-- TARGET : Running the Server -->	
-		<target name="runServer" depends="createschema" description="Runs the Server">
-				<java classname="server.jdo.remote.FinderServer" classpathref="classpath" fork="true">
+		<target name="runServer" depends="compile" description="Runs the Server">
+				<java classname="server.FacadeManager" classpathref="classpath" fork="true">
 					<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
 					<jvmarg value="-Djava.security.policy=${policy.file}"/>		
 					<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		        	<arg value="${server.IP}"/> 
 			 		<arg value="${server.port}"/> 
-					<arg value="${server.Name}"/> 
+					<arg value="${server.Usuario}"/> 
+					<arg value="${server.Cancion}"/> 
+					<arg value="${server.Pago}"/> 
 		        </java>
 		 </target>
 	

@@ -58,37 +58,6 @@ public class FinderServer extends UnicastRemoteObject implements IFinderServer{
 		return can;
 	}
 	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		if (args.length != 3) {
-			System.out.println("Attention: arguments missing");
-			System.exit(0);
-		}
-
-		if (System.getSecurityManager() == null) {
-			System.setSecurityManager(new RMISecurityManager());
-		}
-
-		String name = "//" + args[0] + ":" + args[1] + "/" + args[2];
-		
-		
-		//ERROR!!!
-		/* Finder Exception: RemoteException occurred in server thread; nested exception is: 
-		     [java] 	java.rmi.UnmarshalException: error unmarshalling arguments; nested exception is: 
-		     [java] 	java.lang.ClassNotFoundException: server.jdo.remote.IFinderServer
-		*/
-		try {
-			IFinderServer server = new FinderServer();
-			Naming.rebind(name, server);
-			System.out.println("Server '" + name + "' active and waiting...");
-		} catch (Exception e) {
-			System.err.println("Finder Exception: " + e.getMessage());
-			e.printStackTrace();
-		}
-
-	}
+	
 
 }

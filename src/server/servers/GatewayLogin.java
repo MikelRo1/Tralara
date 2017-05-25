@@ -41,7 +41,7 @@ public class GatewayLogin implements ILogin{
 	}
 	
 	*/
-	
+	/*
 	public static void main(String args[]) {
 		
 		String nombre = "aa"; 
@@ -83,25 +83,44 @@ public class GatewayLogin implements ILogin{
 			System.err.println("# GatewayLogin: IO error: " + e.getMessage());
 		}
 	}
-	
-	public void registrarse(String usuario, String contrasenya) {
+	*/
+	public void registrarse(String nombre, String contrasenya, String serverIP, int serverPort) {
 		//comprobar en el servidor externo que el nombre de usuario y contraseña son correctas
 		
 		//guardar el nombre de usuario en la BD
+		
+		String usuario = nombre + "#" + contrasenya;
+		//System.out.println(usuario);
+
+		//Declaration of the socket to send/receive information to/from the server (an IP and a Port are needed)
+		try (Socket tcpSocket = new Socket(serverIP, serverPort);
+			 //Streams to send and receive information are created from the Socket
+		     DataInputStream in = new DataInputStream(tcpSocket.getInputStream());
+			 DataOutputStream out = new DataOutputStream(tcpSocket.getOutputStream())){
+			
+			//ENVIA EL NOMBRE DE USUARIO Y PASSWORD AL SERVIDOR
+			out.writeUTF(usuario);
+			System.out.println(" - GatewayLogin: Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + usuario + "'");
+			
+			//Read response (a String) from the server
+			String data = in.readUTF();			
+			System.out.println(" - GatewayLogin: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
+		} catch (UnknownHostException e) {
+			System.err.println("# GatewayLogin: Socket error: " + e.getMessage());
+		} catch (EOFException e) {
+			System.err.println("# GatewayLogin: EOF error: " + e.getMessage());
+		} catch (IOException e) {
+			System.err.println("# GatewayLogin: IO error: " + e.getMessage());
+		}
 	}
 	
-	/*public static void main(String[] args)
-	{
-		ServidorLogin server = new ServidorLogin();
-		server.login("aa", "bb");
-		//loginA("aa", "bb");
-		
-	}*/
+
 
 	@Override
 	public void login(String usuario, String contrasenya) {
 		// TODO Auto-generated method stub
 		
 	}
+
 	
 }

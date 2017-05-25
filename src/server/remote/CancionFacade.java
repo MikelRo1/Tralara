@@ -10,7 +10,7 @@ import server.data.dto.CancionDTO;
 
 public class CancionFacade extends UnicastRemoteObject implements ICancionF{
 
-	protected CancionFacade() throws RemoteException {
+	public CancionFacade() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -52,10 +52,11 @@ public class CancionFacade extends UnicastRemoteObject implements ICancionF{
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public void reproducirCancion(int cancion)
-	{
-		//AQUI SE REPRODUCE LA CANCIÓN
+
+	@Override
+	public void reproducirCancion(int cancion) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
