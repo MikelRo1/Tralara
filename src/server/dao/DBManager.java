@@ -211,12 +211,12 @@ public class DBManager {
 	protected static void getAllUsuariosTest(IUsuarioDAO usuDAO) {		
 		try {
 			List<Usuario> usuarios = usuDAO.getUsuarios();
-			System.out.println("     - Mixture of Products and Books ...");
+			System.out.println("     - List of users ...");
 			for (Usuario usuAux: usuarios){
 				System.out.println("        # " + usuAux);
 			}
 		} catch (Exception ex) {
-			System.out.println(" $ Error getting Mixture of Products and Books: " + ex.getMessage());
+			System.out.println(" $ Error getting List of users: " + ex.getMessage());
 		}
 	}
 	
