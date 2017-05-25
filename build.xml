@@ -121,7 +121,7 @@
 	
 	<!-- TARGET : Running the Server -->	
 		<target name="runServer" depends="compile" description="Runs the Server">
-				<java classname="server.FacadeManager" classpathref="classpath" fork="true">
+				<java classname="server.FacadeManager" classpathref="${classpath}" fork="true">
 					<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
 					<jvmarg value="-Djava.security.policy=${policy.file}"/>		
 					<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
