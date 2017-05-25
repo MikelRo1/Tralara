@@ -8,7 +8,7 @@ import server.data.dto.AlbumDTO;
 import server.data.dto.ArtistaDTO;
 import server.data.dto.CancionDTO;
 
-public class CancionFacade extends UnicastRemoteObject implements ICancionF{
+public class CancionFacade extends UnicastRemoteObject implements ICancionF  {
 
 	public CancionFacade() throws RemoteException {
 		super();

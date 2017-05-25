@@ -1,6 +1,6 @@
 package server;
 
-public class FacadeService {
+public class FacadeService{
 
 	
 }

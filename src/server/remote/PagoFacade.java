@@ -3,7 +3,7 @@ package server.remote;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class PagoFacade extends UnicastRemoteObject implements IPagoF{
+public class PagoFacade extends UnicastRemoteObject implements IPagoF {
 
 	public PagoFacade() throws RemoteException {
 		super();

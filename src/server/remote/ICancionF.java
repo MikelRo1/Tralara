@@ -8,7 +8,7 @@ import server.data.dto.AlbumDTO;
 import server.data.dto.ArtistaDTO;
 import server.data.dto.CancionDTO;
 
-public interface ICancionF extends Remote{
+public interface ICancionF extends Remote {
 	
 	public ArrayList<CancionDTO> getCancionDTO() throws RemoteException;
 	public ArtistaDTO getArtistaDTO() throws RemoteException;

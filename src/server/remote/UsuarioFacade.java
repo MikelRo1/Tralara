@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import server.data.dto.UsuarioDTO;
 
-public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF{
+public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 
 	public UsuarioFacade() throws RemoteException {
 		super();

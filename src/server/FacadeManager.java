@@ -16,7 +16,7 @@ import server.data.data.Usuario;
 import server.remote.*;
 
 
-public class FacadeManager extends UnicastRemoteObject {
+public class FacadeManager extends UnicastRemoteObject{
 	
 	/**
 	 * 
