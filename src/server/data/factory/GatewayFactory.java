@@ -21,8 +21,7 @@ public class GatewayFactory {
 	
 			
 		public IPago crearGateway(String tipo){
-			if(tipo.equals("PayPal")){ // nundik bialtzean jarri
-			
+			if(tipo.equals("PayPal")){ 
 				return new GatewayPayPal();
 			}
 			else{

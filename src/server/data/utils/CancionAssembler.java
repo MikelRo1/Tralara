@@ -11,7 +11,7 @@ public class CancionAssembler {
 
 	//lazy instantiation to create the singleton//
 
-	public static CancionAssembler getInstance() {
+	public static synchronized CancionAssembler getInstance() {
 		if (instance == null) {
 			instance = new CancionAssembler();
 		}

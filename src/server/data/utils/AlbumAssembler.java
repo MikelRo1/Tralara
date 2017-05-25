@@ -11,7 +11,7 @@ public class AlbumAssembler {
 
 //lazy instantiation to create the singleton//
 
-	public static AlbumAssembler getInstance() {
+	public  static synchronized AlbumAssembler getInstance() {
 		if (instance == null) {
 			instance = new AlbumAssembler();
 		}

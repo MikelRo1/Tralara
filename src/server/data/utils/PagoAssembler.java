@@ -11,7 +11,7 @@ public class PagoAssembler {
 
 	//lazy instantiation to create the singleton//
 
-	public static PagoAssembler getInstance() {
+	public static synchronized PagoAssembler getInstance() {
 		if (instance == null) {
 			instance = new PagoAssembler();
 		}
