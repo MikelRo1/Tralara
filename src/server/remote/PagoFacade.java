@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class PagoFacade extends UnicastRemoteObject implements IPagoF{
 
-	protected PagoFacade() throws RemoteException {
+	public PagoFacade() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
