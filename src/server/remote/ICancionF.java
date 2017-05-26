@@ -13,8 +13,8 @@ public interface ICancionF extends Remote{
 	public ArrayList<CancionDTO> getCancionDTO() throws RemoteException;
 	public ArtistaDTO getArtistaDTO() throws RemoteException;
 	public AlbumDTO getAlbumDTO() throws RemoteException;
-	public void addFav(int cancion);
-	public void playTrack(int cancion);
+	public void addFav(int cancion) throws RemoteException;
+	public void playTrack(int cancion) throws RemoteException;
 
 }
 

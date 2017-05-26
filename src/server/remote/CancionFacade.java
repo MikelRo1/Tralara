@@ -56,11 +56,8 @@ public class CancionFacade extends UnicastRemoteObject implements ICancionF  {
 	@Override
 	public void playTrack(int cancion) {
 		// TODO Auto-generated method stub
-		System.out.println("PlayTrack ...");
-		CancionDTO canDTO = new CancionDTO();
-		canDTO.setTitulo("Titulo cancion");
-		System.out.println("REPRODUCIENDO CANCION ...");
-		System.out.println(canDTO);
+		System.out.println("PlayTrack: REPRODUCIENDO CANCION ...");
+		System.out.println("[ Viva la vida ]");
 	}
 
 }

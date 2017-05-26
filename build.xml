@@ -21,7 +21,7 @@
 	        <fileset dir="${lib.dir}">
 	            <include name="**/*.jar"/>
 	        </fileset>
-	        <pathelement location="${bin.dir}"/>
+	        <pathelement location="${build.dir}"/>
 	        <pathelement location="${resources.dir}"/>
 	    </path>
 	
@@ -40,19 +40,19 @@
 	
     <target name="clean">
         <delete includeEmptyDirs="true" quiet="true">
-            <fileset dir="${bin.dir}" includes="**/*.*"/>
+            <fileset dir="${build.dir}" includes="**/*.*"/>
         </delete>
-		<delete dir="${bin.dir}"/>
+		<delete dir="${build.dir}"/>
     </target>
 	
 	<!-- TARGET : prepare -->
     <target name="prepare">
-        <mkdir dir="${bin.dir}"/>
+        <mkdir dir="${build.dir}"/>
     </target>
 	
     <!-- TARGET : compile -->
 	<target name="compile" depends="clean, prepare">
-        <javac srcdir="${source.dir}" destdir="${bin.dir}" classpathref="classpath" includeantruntime="no">
+        <javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" includeantruntime="no">
             <include name="**/*.java"/>
          </javac>
     </target>
@@ -63,7 +63,7 @@
     	
    		<enhancer classpathref="classpath" failonerror="true">
             <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-            <fileset dir="${bin.dir}">
+            <fileset dir="${build.dir}">
                 <include name="**/*.class"/>
             </fileset>
    		</enhancer>
@@ -75,7 +75,7 @@
 
     	<schematool mode="create" classpathref="classpath" failonerror="true" props="datanucleus.properties">
             <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-            <fileset dir="${bin.dir}">
+            <fileset dir="${build.dir}">
                 <include name="**/*.class"/>
             </fileset>
         </schematool>
@@ -87,7 +87,7 @@
 
     	 	<schematool mode="delete" classpathref="classpath" failonerror="true" props="datanucleus.properties">            
     	      <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-    	 		<fileset dir="${bin.dir}">
+    	 		<fileset dir="${build.dir}">
                 <include name="**/*.class"/>
             </fileset>
         </schematool>
@@ -99,7 +99,7 @@
 	    	
 	        <schematool mode="dbinfo" classpathref="classpath" failonerror="true" props="datanucleus.properties">
 	        	 <sysproperty key="log4j.configuration" value="file:${resources.dir}/log4j.properties"/>
-	        	<fileset dir="${bin.dir}">
+	        	<fileset dir="${build.dir}">
 	                <include name="**/*.class"/>
 	            </fileset>
        
@@ -123,7 +123,7 @@
 	
 		<target name="runServer" depends="compile" description="Runs the Server">
 				<java classname="server.FacadeManager" classpathref="classpath" fork="true">
-					<jvmarg value="-Djava.rmi.server.codebase=file:${bin.dir}/"/>
+					<jvmarg value="-Djava.rmi.server.codebase=file:${build.dir}/"/>
 					<jvmarg value="-Djava.security.policy=${policy.file}"/>		
 					<jvmarg value="-Dlog4j.configuration=log4j.properties"/>
 		        	<arg value="${server.IP}"/> 
