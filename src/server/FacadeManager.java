@@ -63,22 +63,22 @@ public class FacadeManager extends UnicastRemoteObject{
 			System.setSecurityManager(new RMISecurityManager());
 		}
 
-		String nameCancion = "//" + args[0] + ":" + args[1] + "/" + args[2];
-		String nameUsuario = "//" + args[0] + ":" + args[1] + "/" + args[3];
+		String nameCancion = "//" + args[0] + ":" + args[1] + "/" + args[3];
+		String nameUsuario = "//" + args[0] + ":" + args[1] + "/" + args[2];
 		String namePago = "//" + args[0] + ":" + args[1] + "/" + args[4];
 
 		try {
 			System.out.println("Servidor en marcha!");
 			ICancionF cancionService = new CancionFacade();			
-			Naming.rebind(nameCancion, (Remote) cancionService);
+			Naming.rebind(nameCancion, cancionService);
 			System.out.println("* Cancion Facade '" + nameCancion + "' active and waiting...");
 			
 			IUsuarioF usuService = new UsuarioFacade();			
-			Naming.rebind(nameUsuario, (Remote) usuService);
+			Naming.rebind(nameUsuario, usuService);
 			System.out.println("* Usuario Facade '" + nameUsuario + "' active and waiting...");
 			
 			IPagoF pagoService = new PagoFacade();			
-			Naming.rebind(namePago, (Remote) pagoService);
+			Naming.rebind(namePago, pagoService);
 			System.out.println("* Pago Facade '" + namePago + "' active and waiting...");
 			
 		} catch (Exception e) {
