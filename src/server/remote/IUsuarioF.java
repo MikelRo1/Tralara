@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import server.data.dto.UsuarioDTO;
 
-public interface IUsuarioF extends Remote{
+public interface IUsuarioF{
 	
 	public boolean checkAddUser(String user) throws RemoteException;
 	public ArrayList<UsuarioDTO> getUsuarioDTO() throws RemoteException;
