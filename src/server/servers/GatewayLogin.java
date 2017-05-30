@@ -121,6 +121,17 @@ public class GatewayLogin implements ILogin{
 		// TODO Auto-generated method stub
 		
 	}
-
 	
+	public boolean comprobarRegistro(String usuario, String password)
+	{	
+		ServidorLogin server = new ServidorLogin(socket); //
+		for (int i=0; i<server.devolverUsuarios().size(); i++)
+		{
+			if (usuario.equals(server.devolverUsuarios().get(i).getNombre()) && password.equals(server.devolverUsuarios().get(i).getPassword()))
+			{
+				return true;
+			}
+		}
+		return false;
+	}	
 }

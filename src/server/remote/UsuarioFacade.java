@@ -1,21 +1,25 @@
 package server.remote;
 
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
+import java.util.List;
 
+import server.dao.UsuarioDAO;
+import server.data.data.Usuario;
 import server.data.dto.UsuarioDTO;
+import server.servers.GatewayLogin;
 
 public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 
+	private UsuarioDAO objDao;
+	private GatewayLogin objGatewayLogin;
+	
 	public UsuarioFacade() throws RemoteException {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -28,9 +32,29 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	}
 
 	@Override
-	public boolean checkAddUser(String user) throws RemoteException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean checkAddUser(String user) throws RemoteException 
+	{
+		List<Usuario> arrayusuarios = new ArrayList<>();
+		arrayusuarios = objDao.getUsuarios();
+		for (int i=0; i<arrayusuarios.size();i++)
+		{
+			if (user.equals(arrayusuarios.get(i).getNombreUsuario()))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean checkUserExterno(String user, String pass) throws RemoteException
+	{	
+		return objGatewayLogin.comprobarRegistro(user, pass);
+	}
+	
+	public void registrarse(Usuario user)
+	{
+		objDao.storeUsario(user);
+		System.out.println("Registrado");
 	}
 
 }
