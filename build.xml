@@ -116,7 +116,7 @@
 		<!-- TARGET : RMI Service Section - export and runServer -->	
 		
 		<target name="export" depends="compile" description="Export the project into a .jar file">
-				<jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" includes="**/ICancionF.class, **/IPagoF.class, **/IUsuarioF.class, **/**DTO.class"/>
+				<jar destfile="${dist.dir}/${export.file}" basedir="${build.dir}" includes="**/ICancionF.class, **/IPagoF.class, **/IUsuarioF.class, **/**DTO.class, **/Usuario.class, **/Cancion.class"/>
 	    </target>	
 	
 	<!-- TARGET : Running the Server -->	

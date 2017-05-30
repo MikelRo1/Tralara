@@ -13,11 +13,12 @@ import server.servers.GatewayLogin;
 
 public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 
-	private UsuarioDAO objDao;
+	public UsuarioDAO objDao;
 	private GatewayLogin objGatewayLogin;
 	
 	public UsuarioFacade() throws RemoteException {
 		super();
+		objDao = new UsuarioDAO();
 		// TODO Auto-generated constructor stub
 	}
 	private static final long serialVersionUID = 1L;
@@ -51,7 +52,7 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 		return objGatewayLogin.comprobarRegistro(user, pass);
 	}
 	
-	public void registrarse(Usuario user)
+	public void registrarse(Usuario user) throws RemoteException
 	{
 		objDao.storeUsario(user);
 		System.out.println("Registrado");
