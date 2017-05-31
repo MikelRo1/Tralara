@@ -19,6 +19,7 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	public UsuarioFacade() throws RemoteException {
 		super();
 		objDao = new UsuarioDAO();
+		objGatewayLogin = new GatewayLogin();
 		// TODO Auto-generated constructor stub
 	}
 	private static final long serialVersionUID = 1L;
