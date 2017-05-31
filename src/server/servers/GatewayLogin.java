@@ -124,11 +124,14 @@ public class GatewayLogin implements ILogin{
 	
 	public boolean comprobarRegistro(String usuario, String password)
 	{	
+		String nombreUsu;
+		nombreUsu = usuario + "#" + password;
 		ServidorLogin server = new ServidorLogin(socket); //
 		for (int i=0; i<server.devolverUsuarios().size(); i++)
 		{
-			if (usuario.equals(server.devolverUsuarios().get(i).getNombre()) && password.equals(server.devolverUsuarios().get(i).getPassword()))
+			if (nombreUsu.equals(server.devolverUsuarios().get(i).getNombre()))
 			{
+				System.out.println(nombreUsu + " " + server.devolverUsuarios().get(i).getNombre());
 				return true;
 			}
 		}
