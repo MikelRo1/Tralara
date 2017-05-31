@@ -124,14 +124,14 @@ public class ServidorLogin {
 	
 	
 	public static void main(String args[]) {
-		if (args.length < 1) {
+		/*if (args.length < 1) {
 			System.err.println(" # Usage: ServidorLogin [PORT]");
 			System.exit(1);
-		}
+		}*/
 		
 		//args[1] = Server socket port
-		int serverPort = 1099;
-		
+		int serverPort = 8000;
+		System.out.println("ServidorLogin hasiera");
 		/**
 		 * NOTE: try-with resources Statement - https://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 		 * Try statement that declares one or more resources. A resource is an object that must be closed after the program is 

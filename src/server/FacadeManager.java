@@ -73,13 +73,15 @@ public class FacadeManager extends UnicastRemoteObject{
 			Naming.rebind(nameCancion, cancionService);
 			System.out.println("* Cancion Facade '" + nameCancion + "' active and waiting...");
 			
-			IUsuarioF usuService = new UsuarioFacade();			
-			Naming.rebind(nameUsuario, usuService);
-			System.out.println("* Usuario Facade '" + nameUsuario + "' active and waiting...");
-			
 			IPagoF pagoService = new PagoFacade();			
 			Naming.rebind(namePago, pagoService);
 			System.out.println("* Pago Facade '" + namePago + "' active and waiting...");
+			
+			IUsuarioF usuService = new UsuarioFacade();	
+			Naming.rebind(nameUsuario, usuService);
+			System.out.println("* Usuario Facade '" + nameUsuario + "' active and waiting...");
+			
+			
 			
 		} catch (Exception e) {
 			System.err.println("$ FacadeManager exception: " + e.getMessage());

@@ -16,7 +16,15 @@ public class GatewayLogin implements ILogin{
 	static Socket socket;
 
 	public GatewayLogin() {
-		
+		try {
+			socket = new Socket("0.0.0.0", 8000);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		server = new ServidorLogin(socket);
 	}
 	

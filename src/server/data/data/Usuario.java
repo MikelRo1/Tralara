@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.jdo.annotations.PersistenceCapable;
 
 @PersistenceCapable(detachable = "true")
-public class Usuario
+public class Usuario implements Serializable
 {
 	String usuario;
 	String nombreUsuario;
