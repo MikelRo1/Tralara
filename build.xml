@@ -52,8 +52,9 @@
 	
     <!-- TARGET : compile -->
 	<target name="compile" depends="clean, prepare">
-        <javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" includeantruntime="no">
-            <include name="**/*.java"/>
+        <javac srcdir="${source.dir}" destdir="${build.dir}" classpathref="classpath" deprecation="true" fork="true" includeantruntime="false">
+        	
+        	<include name="**/*.java"/>
          </javac>
     </target>
 	

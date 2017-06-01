@@ -6,18 +6,21 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 import server.data.dto.UsuarioDTO;
+import servidoresExternos.ServidorLogin;
 
-public class GatewayLogin implements ILogin{
+public class GatewayLogin extends UnicastRemoteObject implements ILogin{
 	
 	static ServidorLogin server;
 	static Socket socket;
 
-	public GatewayLogin() {
+	public GatewayLogin() throws RemoteException{
 		try {
-			socket = new Socket("0.0.0.0", 8000);
+			socket = new Socket("0.0.0.0", 9000);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -92,7 +95,7 @@ public class GatewayLogin implements ILogin{
 		}
 	}
 	*/
-	public void registrarse(String nombre, String contrasenya, String serverIP, int serverPort) {
+	public void registrarse(String nombre, String contrasenya, String serverIP, int serverPort) throws RemoteException{
 		//comprobar en el servidor externo que el nombre de usuario y contraseña son correctas
 		
 		//guardar el nombre de usuario en la BD
@@ -125,21 +128,21 @@ public class GatewayLogin implements ILogin{
 
 
 	@Override
-	public void login(String usuario, String contrasenya) {
+	public void login(String usuario, String contrasenya) throws RemoteException{
 		// TODO Auto-generated method stub
 		
 	}
 	
-	public boolean comprobarRegistro(String usuario, String password)
+	public boolean comprobarRegistro(String usuario, String password) throws RemoteException
 	{	
 		String nombreUsu;
 		nombreUsu = usuario + "#" + password;
 		ServidorLogin server = new ServidorLogin(socket); //
 		for (int i=0; i<server.devolverUsuarios().size(); i++)
 		{
-			if (nombreUsu.equals(server.devolverUsuarios().get(i).getNombre()))
+			if (nombreUsu.equals(server.devolverUsuarios().get(i).toString()))
 			{
-				System.out.println(nombreUsu + " " + server.devolverUsuarios().get(i).getNombre());
+				System.out.println(nombreUsu + " " + server.devolverUsuarios().get(i).toString());
 				return true;
 			}
 		}
