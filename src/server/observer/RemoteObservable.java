@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.sd.util.observer.remote;
+package server.observer;
 
 import java.util.ArrayList;
 import java.util.List;

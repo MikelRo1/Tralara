@@ -36,6 +36,7 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	@Override
 	public boolean checkAddUser(String user) throws RemoteException 
 	{
+		System.out.print("checkAddUser");
 		List<Usuario> arrayusuarios = new ArrayList<>();
 		arrayusuarios = objDao.getUsuarios();
 		for (int i=0; i<arrayusuarios.size();i++)
@@ -50,10 +51,14 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	
 	public boolean checkUserExterno(String user, String pass) throws RemoteException
 	{	
-		return objGatewayLogin.comprobarRegistro(user, pass);
+		System.out.println("inicio de comprobacion");
+		boolean comprobacion = false;
+		comprobacion = objGatewayLogin.comprobarRegistro(user, pass);
+		System.out.println("Comprobacion "+comprobacion);
+		return comprobacion;
 	}
 	
-	public void registrarse(Usuario user) throws RemoteException
+	public void registrarseBD(Usuario user) throws RemoteException
 	{
 		objDao.storeUsario(user);
 		System.out.println("Registrado");

@@ -17,10 +17,11 @@ public class GatewayLogin extends UnicastRemoteObject implements ILogin{
 	
 	static ServidorLogin server;
 	static Socket socket;
+	private boolean correcto = false;
 
 	public GatewayLogin() throws RemoteException{
 		try {
-			socket = new Socket("0.0.0.0", 9000);
+			socket = new Socket("0.0.0.0", 4000);
 		} catch (UnknownHostException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -112,10 +113,12 @@ public class GatewayLogin extends UnicastRemoteObject implements ILogin{
 			//ENVIA EL NOMBRE DE USUARIO Y PASSWORD AL SERVIDOR
 			out.writeUTF(usuario);
 			System.out.println(" - GatewayLogin: Sent data to '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + usuario + "'");
+			ServidorLogin server = new ServidorLogin(tcpSocket);
+			this.correcto = server.login(usuario);
 			
 			//Read response (a String) from the server
-			String data = in.readUTF();			
-			System.out.println(" - GatewayLogin: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
+			//String data = in.readUTF();			
+			//System.out.println(" - GatewayLogin: Received data from '" + tcpSocket.getInetAddress().getHostAddress() + ":" + tcpSocket.getPort() + "' -> '" + data + "'");
 		} catch (UnknownHostException e) {
 			System.err.println("# GatewayLogin: Socket error: " + e.getMessage());
 		} catch (EOFException e) {
@@ -123,6 +126,7 @@ public class GatewayLogin extends UnicastRemoteObject implements ILogin{
 		} catch (IOException e) {
 			System.err.println("# GatewayLogin: IO error: " + e.getMessage());
 		}
+		
 	}
 	
 
@@ -135,17 +139,10 @@ public class GatewayLogin extends UnicastRemoteObject implements ILogin{
 	
 	public boolean comprobarRegistro(String usuario, String password) throws RemoteException
 	{	
-		String nombreUsu;
-		nombreUsu = usuario + "#" + password;
-		ServidorLogin server = new ServidorLogin(socket); //
-		for (int i=0; i<server.devolverUsuarios().size(); i++)
-		{
-			if (nombreUsu.equals(server.devolverUsuarios().get(i).toString()))
-			{
-				System.out.println(nombreUsu + " " + server.devolverUsuarios().get(i).toString());
-				return true;
-			}
-		}
-		return false;
+
+		this.registrarse(usuario, password, "0.0.0.0", 4000);
+	
+		System.out.println("Comprobar Registro " +correcto);
+		return correcto;
 	}	
 }

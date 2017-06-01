@@ -12,7 +12,7 @@ import javax.jdo.Transaction;
 
 import server.data.data.Usuario;
 
-public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
+public class UsuarioDAO implements IUsuarioDAO {
 
 	//private List<Usuario> usuariosCache;
 	private PersistenceManagerFactory pmf;
@@ -27,13 +27,13 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
 	@Override
 	public void storeUsario(Usuario usu) {
 		// TODO Auto-generated method stub
-		PersistenceManager pm = (PersistenceManager) pmf.getPersistenceManager();
-	    Transaction tx = ((javax.jdo.PersistenceManager) pm).currentTransaction();
+		PersistenceManager pm = pmf.getPersistenceManager();
+	    Transaction tx = pm.currentTransaction();
 	   
 	    try {
 	       tx.begin();
 	       System.out.println("   * Storing an user: " + usu.getNombreUsuario());
-	       ((javax.jdo.PersistenceManager) pm).makePersistent(usu);
+	       pm.makePersistent(usu);
 	       tx.commit();
 	    } catch (Exception ex) {
 	    	System.out.println("   $ Error storing an usuario: " + ex.getMessage());
@@ -42,26 +42,27 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
 	    		tx.rollback();
 	    	}
 				
-    		((javax.jdo.PersistenceManager) pm).close();
+    		pm.close();
 	    }
+	    
 	}
 
 	
 	public List<Usuario> getUsuarios() {
-		PersistenceManager pm = (PersistenceManager) pmf.getPersistenceManager();
+		PersistenceManager pm = pmf.getPersistenceManager();
 		/* By default only 1 level is retrieved from the db
 		 * so if we wish to fetch more than one level, we must indicate it
 		 */
-		((javax.jdo.PersistenceManager) pm).getFetchPlan().setMaxFetchDepth(3);
+		pm.getFetchPlan().setMaxFetchDepth(3);
 		
-		Transaction tx = ((javax.jdo.PersistenceManager) pm).currentTransaction();
+		Transaction tx = pm.currentTransaction();
 		List<Usuario> usu = new ArrayList<>();
 		
 		try {
 			System.out.println("   * Retrieving an Extent for Usuarios.");
 			
-			tx.begin();			
-			Extent<Usuario> extent = ((javax.jdo.PersistenceManager) pm).getExtent(Usuario.class, true);
+			tx.begin();
+			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
 			
 			for (Usuario product : extent) {
 				usu.add(product);
@@ -69,30 +70,30 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
 
 			tx.commit();			
 		} catch (Exception ex) {
-	    	System.out.println("   $ Error retrieving an extent: " + ex.getMessage());
+	    	System.out.println("   $ Error retrieving an extent: " + ex.getMessage() );
 	    } finally {
 	    	if (tx != null && tx.isActive()) {
 	    		tx.rollback();
 	    	}
 
-    		((javax.jdo.PersistenceManager) pm).close();    		
+    		pm.close();    		
 	    }
 	    				
 		return usu;
 	}
 	
 	public Usuario getUsu(String name){
-		PersistenceManager pm = (PersistenceManager) pmf.getPersistenceManager();
-		((javax.jdo.PersistenceManager) pm).getFetchPlan().setMaxFetchDepth(3);
+		PersistenceManager pm = pmf.getPersistenceManager();
+		pm.getFetchPlan().setMaxFetchDepth(3);
 		
-		Transaction tx = ((javax.jdo.PersistenceManager) pm).currentTransaction();
+		Transaction tx = pm.currentTransaction();
 		Usuario usu = null;
 	    
 		try {
 			System.out.println ("   * Querying a Product: " + name);
 			
 	    	tx.begin();
-	    	Query query = ((javax.jdo.PersistenceManager) pm).newQuery("SELECT FROM " + Usuario.class.getName() + " WHERE usuario == '" + name + "'");
+	    	Query query = pm.newQuery("SELECT FROM " + Usuario.class.getName() + " WHERE usuario == '" + name + "'");
 	    	query.setUnique(true);
 	    	usu = (Usuario)query.execute();	    
  	    	tx.commit();
@@ -104,7 +105,7 @@ public class UsuarioDAO<PersistenceManager> implements IUsuarioDAO {
 		   		tx.rollback();
 		 }
 				
-	   		((javax.jdo.PersistenceManager) pm).close();
+	   		pm.close();
 	     }
 
 	    return usu;

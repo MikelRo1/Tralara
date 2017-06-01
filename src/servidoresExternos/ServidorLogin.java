@@ -67,19 +67,9 @@ public class ServidorLogin {
 			if (usuario.equals(this.devolverUsuarios().get(i).toString()))
 			//usuario.equals(server.devolverUsuarios().get(i).getNombre()) && contrasenya.equals(server.devolverUsuarios().get(i).getPassword())
 			{
-				System.out.println("bai");
 				a = true;
 				return true;
 			}
-		}
-		
-		if (a == false){
-			System.out.println("ez");	
-			return false;
-		}
-		if (a == true){
-			System.out.println("bai");	
-			return true;
 		}
 		
 		return false;
@@ -120,7 +110,7 @@ public class ServidorLogin {
 		
 		//args[1] = Server socket port
 		//int serverPort = Integer.parseInt(args[0]);
-		int serverPort = 9000;
+		int serverPort = 4000;
 		
 		System.out.println("ServidorLogin hasiera");
 		

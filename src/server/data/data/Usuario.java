@@ -9,8 +9,6 @@ import server.observer.RemoteObserver;
 
 import javax.jdo.annotations.PersistenceCapable;
 
-import es.deusto.ingenieria.sd.donation.client.remote.DonorRemoteObserver;
-import es.deusto.ingenieria.sd.donation.server.remote.ICollector;
 
 @PersistenceCapable(detachable = "true")
 public class Usuario extends RemoteObserver implements Serializable 
@@ -24,7 +22,7 @@ public class Usuario extends RemoteObserver implements Serializable
 	String apellidoUsuario;
 	float tipocuenta;
 	
-	public Usuario(String usuario, String nombreUsuario, String apellidoUsuario, float tipocuenta) {
+	public Usuario(String usuario, String nombreUsuario, String apellidoUsuario, float tipocuenta) throws RemoteException{
 		super();
 		this.usuario = usuario;
 		this.nombreUsuario = nombreUsuario;

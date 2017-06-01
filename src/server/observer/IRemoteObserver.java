@@ -1,4 +1,4 @@
-package es.deusto.ingenieria.sd.util.observer.remote;
+package server.observer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

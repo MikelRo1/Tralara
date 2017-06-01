@@ -5,8 +5,9 @@ import java.rmi.RemoteException;
 
 import javax.jdo.annotations.PersistenceCapable;
 
-import es.deusto.ingenieria.sd.util.observer.remote.IRemoteObserver;
 import server.observer.IRemoteObservable;
+//import server.observer.IRemoteObserver;
+//import server.observer.IRemoteObservable;
 import server.observer.RemoteObservable;
 
 @PersistenceCapable(detachable = "true")
