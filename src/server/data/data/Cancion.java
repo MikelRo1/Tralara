@@ -1,11 +1,16 @@
 package server.data.data;
 
 import java.io.Serializable;
+import java.rmi.RemoteException;
 
 import javax.jdo.annotations.PersistenceCapable;
 
+import es.deusto.ingenieria.sd.util.observer.remote.IRemoteObserver;
+import server.observer.IRemoteObservable;
+import server.observer.RemoteObservable;
+
 @PersistenceCapable(detachable = "true")
-public class Cancion
+public class Cancion implements IRemoteObservable
 {
 	int idCancion;
 	//
@@ -14,6 +19,7 @@ public class Cancion
 	String fechalanzamientoCancion;
 	int preciodiaCancion;
 	String letraCancion;
+	private RemoteObservable remoteObservable = new RemoteObservable();
 	
 	public Cancion(int idCancion, String tituloCancion, float duracionCancion,
 			String fechalanzamientoCancion, int preciodiaCancion,
@@ -76,7 +82,33 @@ public class Cancion
 	}
 	
 	
+
+	@Override
+	public void addRemoteObserver(server.observer.IRemoteObserver observer)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		this.remoteObservable.addRemoteObserver(observer);
+		
+		try {
+			observer.update(new Integer(this.preciodiaCancion));
+		} catch (RemoteException e) {
+			System.err.println(" # Error subscribing to remote server: " + e.getMessage());
+		}
+	}
+
+	@Override
+	public void deleteRemoteObserver(server.observer.IRemoteObserver observer)
+			throws RemoteException {
+		// TODO Auto-generated method stub
+		this.remoteObservable.deleteRemoteObserver(observer);
+		
+	}
 	
+	private void notifyTotal() {
+		if(this.preciodiaCancion ==0){
+		this.remoteObservable.notifyRemoteObservers(this.tituloCancion);
+		}
+	}
 	
 
 }
