@@ -62,8 +62,9 @@ public class UsuarioDAO implements IUsuarioDAO {
 			System.out.println("   * Retrieving an Extent for Usuarios.");
 			
 			tx.begin();
+			System.out.println("estamos en UsuarioDAO y  hemos hecho begin");
 			Extent<Usuario> extent = pm.getExtent(Usuario.class, true);
-			
+			System.out.println("estamos en UsuarioDAO y  hemos hecho getExtent");
 			for (Usuario product : extent) {
 				usu.add(product);
 			}

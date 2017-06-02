@@ -36,13 +36,14 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	@Override
 	public boolean checkAddUser(String user) throws RemoteException 
 	{
-		System.out.print("checkAddUser");
+		System.out.println("checkAddUser");
 		List<Usuario> arrayusuarios = new ArrayList<>();
 		arrayusuarios = objDao.getUsuarios();
 		for (int i=0; i<arrayusuarios.size();i++)
 		{
 			if (user.equals(arrayusuarios.get(i).getNombreUsuario()))
 			{
+				System.out.println("son iguales");
 				return false;
 			}
 		}
