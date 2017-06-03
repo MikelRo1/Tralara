@@ -6,6 +6,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import server.dao.DBManager;
 import server.dao.UsuarioDAO;
 import server.data.data.Usuario;
 import server.data.dto.UsuarioDTO;
@@ -34,11 +35,15 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	}
 
 	@Override
-	public boolean checkAddUser(String user) throws RemoteException 
+	public boolean checkAddUser(String user, String nombre, String apellido, float tipocuenta) throws RemoteException 
 	{
 		System.out.println("checkAddUser");
-		List<Usuario> arrayusuarios = new ArrayList<>();
-		arrayusuarios = objDao.getUsuarios();
+		//List<Usuario> arrayusuarios = new ArrayList<>();
+		//arrayusuarios = objDao.getUsuarios();
+		//arrayusuarios = DBManager.getInstance().getAllUsuariosTest();
+		
+		
+		/*
 		for (int i=0; i<arrayusuarios.size();i++)
 		{
 			if (user.equals(arrayusuarios.get(i).getNombreUsuario()))
@@ -47,7 +52,11 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 				return false;
 			}
 		}
-		return true;
+		return true;*/
+		
+		boolean registro = DBManager.getInstance().registro(user, nombre, apellido, tipocuenta);
+		System.out.println(registro);
+		return registro;
 	}
 	
 	public boolean checkUserExterno(String user, String pass) throws RemoteException

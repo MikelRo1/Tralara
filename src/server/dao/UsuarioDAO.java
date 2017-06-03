@@ -20,7 +20,6 @@ public class UsuarioDAO implements IUsuarioDAO {
 
 	public UsuarioDAO ()
 	{
-		//this.usuariosCache = new ArrayList<>();
 		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	}
 
@@ -32,7 +31,7 @@ public class UsuarioDAO implements IUsuarioDAO {
 	   
 	    try {
 	       tx.begin();
-	       System.out.println("   * Storing an user: " + usu.getNombreUsuario());
+	       System.out.println("   * Storing an user: " + usu);
 	       pm.makePersistent(usu);
 	       tx.commit();
 	    } catch (Exception ex) {

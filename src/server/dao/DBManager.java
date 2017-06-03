@@ -1,5 +1,6 @@
 package server.dao;
 
+import java.rmi.RemoteException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,7 @@ public class DBManager {
 	private List<Pago> pagoCache;
 	private List<Reproduccion> reproduccionCache;
 	//private  PersistenceManagerFactory pmf;
+	private IUsuarioDAO usuDAO;
 	//private PersistenceManager pm;
 	//private Transaction tx;
 	
@@ -36,50 +38,26 @@ public class DBManager {
 		this.pagoCache =  new ArrayList<>();
 		this.reproduccionCache =  new ArrayList<>();
 		
-		/*
-		User user1 = new User();
-		user1.setEmail("sample@gmail.com");
-		user1.setNickname("buyer33");
-		user1.setPassword("12345");		
+		usuDAO = new UsuarioDAO();
 		
-		User user2 = new User();
-		user2.setEmail("troyaikman08@hotmail.com");
-		user2.setNickname("troyaikman08");
-		user2.setPassword("12345");
+		try {
+			Usuario user1 = new Usuario("dd", "dd", "aa", 22);
+			System.out.println("Usuario 1");
+			Usuario user2= new Usuario("ee", "e", "r", 01);
+			System.out.println("Usuario 2");
+			this.store(user1);
+			System.out.println("Usuario 1 store");
+			usuDAO.storeUsario(user1);
+			System.out.println("Usuario 1 storeUsuario");
+			this.store(user2);
+			System.out.println("Usuario 2 store");
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		this.usersCache.add(user1);
-		this.usersCache.add(user2);
 		
-		Category iPadCat = new Category();
-		iPadCat.setName("iPad");
 		
-		this.categoriesCache.add(iPadCat);
-		
-		Article iPadCover = new Article();
-		iPadCover.setActive(true);
-		iPadCover.setCategory(iPadCat);
-		iPadCover.setInitialPrice(10.0f);
-		iPadCover.setNumber(1);
-		iPadCover.setOwner(user2);
-		iPadCover.setTitle("iPad 2 Cover");		
-		
-		iPadCat.addArticle(iPadCover);
-		user2.addArticle(iPadCover);
-		
-		Article iPadStylus = new Article();
-		iPadStylus.setActive(true);
-		iPadStylus.setCategory(iPadCat);
-		iPadStylus.setInitialPrice(15.50f);
-		iPadStylus.setNumber(2);
-		iPadCover.setOwner(user2);
-		iPadStylus.setTitle("iPad Stylus");
-		
-		iPadCat.addArticle(iPadStylus);
-		user2.addArticle(iPadStylus);
-		
-		this.articlesCache.add(iPadCover);
-		this.articlesCache.add(iPadStylus);
-		*/
 	}
 
 	public static DBManager getInstance() {
@@ -124,6 +102,12 @@ public class DBManager {
 	
 	public boolean store(Reproduccion reproduccion) {
 		this.reproduccionCache.add(reproduccion);
+		
+		return true;
+	}
+	
+	public boolean store(Usuario usuario) {
+		this.usuariosCache.add(usuario);
 		
 		return true;
 	}
@@ -208,26 +192,55 @@ public class DBManager {
 	}
 	*/
 	
-	protected static void getAllUsuariosTest(IUsuarioDAO usuDAO) {		
-		try {
-			List<Usuario> usuarios = usuDAO.getUsuarios();
-			System.out.println("     - List of users ...");
-			for (Usuario usuAux: usuarios){
-				System.out.println("        # " + usuAux);
-			}
-		} catch (Exception ex) {
-			System.out.println(" $ Error getting List of users: " + ex.getMessage());
-		}
-	}
+	public List<Usuario> getAllUsuariosTest() {		
+		
+		List<Usuario> usuarios = usuDAO.getUsuarios();
 	
+		System.out.println("Returning Users to client ....");
+		/*for (Usuario usuAux: usuarios){
+			System.out.println("        # " + usuAux);
+		}
+		*/
+		return usuarios;
+	}
+
+	public boolean registro(String usuario, String nombre, String apellido, float cuenta) {
+		Usuario user1;
+		try {
+			user1 = new Usuario(usuario, nombre, apellido, cuenta);
+			
+			usuDAO = new UsuarioDAO();
+			List<Usuario> users = usuDAO.getUsuarios();
+			
+			int semaforo = 0;
+			for (Usuario user : users) {			
+				if(user.getUsuario().equals(user1.getUsuario()) && semaforo == 0){
+					semaforo=1;
+					System.out.println("semaforo "+ semaforo);
+				}
+			}	
+			if (semaforo == 0)
+			{
+				usuDAO.storeUsario(user1);
+				return true;
+			}
+			
+		} catch (RemoteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
 
 	
-	/*public static void main(String[] args) {
+	public static void main(String[] args) {
 		IUsuarioDAO usuDAO = new UsuarioDAO();		
 		
+		System.out.println("main BD");
 		
 		createUsuarioTest(usuDAO);
-		createBookTest(productDAO);
+		/*createBookTest(productDAO);
 		getAllProductsTest(productDAO);
 		
 		updateProductTest(productDAO);
@@ -241,73 +254,7 @@ public class DBManager {
 		*/
 			
 		
-	//}
-	
-	
-	
-	/*
-	protected static void updateBookTest(IProductDAO productDAO) {
-		try {
-			List<Book> books = productDAO.getBooks();
-			
-			if (!books.isEmpty()) { 
-				Book book = books.get(0);			
-		
-				System.out.println(" - Updating book copies (new copy in new shelf): " + book);		
-				Shelf shelf = new Shelf ("Second Shelf");
-				book.addCopy("5", "Good state", shelf);		
-				productDAO.updateProduct(book);
-				System.out.println("   * New copy in new shelf added: " + book);
-			
-			}
-		} catch (Exception ex) {
-			System.out.println(" $ Error retrieving the updated book: " + ex.getMessage());
-		}		
 	}
 	
-	protected static void checkCopiesTest(IProductDAO productDAO) {
-		try {
-					
-				Book updatedBook = (Book)productDAO.getProduct("Dracula");		
-				System.out.println("   * Retrieving updated book: " + updatedBook);
-				System.out.println("   * Number of copies of this book: " + updatedBook.getCopies().size());
-				
-			
-				for (Copy copy: updatedBook.getCopies()){
-					System.out.println("     # " + copy);
-				} 
-	
-		} catch (Exception ex) {
-			System.out.println(" $ Error retrieving updated book: " + ex.getMessage());
-		}		
-	}
-	
-	protected static void updateCopyShelf(IProductDAO productDAO) {
-		try {
-			
-			Book updatedBook = (Book)productDAO.getProduct("The Hobbit");		
-			System.out.println("   * Retrieving updated book: " + updatedBook);
-			
-			Shelf existingShelf = (Shelf)productDAO.getShelf("First Shelf");
-			System.out.println(" - Adding a new copy to an existing shelf: " + existingShelf.getIdentifier());		
-			updatedBook.addCopy("7", "Bad state", existingShelf);		
-			productDAO.updateProduct(updatedBook);
-			System.out.println("   * New copy added to an existing shelf : " + updatedBook);
-			
-		} catch (Exception ex) {
-			System.out.println(" $ Error retrieving updated a book: " + ex.getMessage());
-		}		
-	}
-	
-	 protected static void deleteAllObjects(IUsuarioDAO productDAO) {
-	
-		 try {
-				
-			 	productDAO.deleteAllUsuarios();	
-				System.out.println("   ==== DB emptied ====    ");
-				
-			} catch (Exception ex) {
-				System.out.println(" $ Error emptying DB: " + ex.getMessage());
-			}		
-	 }*/
+
 }

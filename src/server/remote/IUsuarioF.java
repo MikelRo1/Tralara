@@ -9,7 +9,7 @@ import server.data.dto.UsuarioDTO;
 
 public interface IUsuarioF extends Remote{
 	
-	public boolean checkAddUser(String user) throws RemoteException;
+	public boolean checkAddUser(String user, String nombre, String apellido, float tipocuenta) throws RemoteException;
 	public ArrayList<UsuarioDTO> getUsuarioDTO() throws RemoteException;
 	public boolean checkUserExterno(String user, String pass) throws RemoteException;
 	public void registrarseBD(Usuario user) throws RemoteException;

@@ -8,6 +8,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 import server.dao.CancionDAO;
+import server.dao.DBManager;
 import server.dao.ICancionDAO;
 import server.dao.IUsuarioDAO;
 import server.dao.UsuarioDAO;
@@ -87,5 +88,8 @@ public class FacadeManager extends UnicastRemoteObject{
 			System.err.println("$ FacadeManager exception: " + e.getMessage());
 			e.printStackTrace();
 		}
+		
+		System.out.println("Base de datos");
+		DBManager.getInstance();
 	}
 }

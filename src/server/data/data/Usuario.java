@@ -68,6 +68,10 @@ public class Usuario extends RemoteObserver implements Serializable
 		
 	}
 	
+	public String toString() {
+		return "Usuario: " + usuario;
+	}
+	
 	public void notificar(String nombrecancion) {
 		System.out.println("La cancion" + nombrecancion + "está gratis hoy, aproveche");
 	}
