@@ -222,12 +222,12 @@ public class DBManager {
 	
 
 	
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		IUsuarioDAO usuDAO = new UsuarioDAO();		
 		
 		
 		createUsuarioTest(usuDAO);
-		/*createBookTest(productDAO);
+		createBookTest(productDAO);
 		getAllProductsTest(productDAO);
 		
 		updateProductTest(productDAO);
@@ -241,7 +241,7 @@ public class DBManager {
 		*/
 			
 		
-	}
+	//}
 	
 	
 	
