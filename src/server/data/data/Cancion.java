@@ -1,17 +1,18 @@
 package server.data.data;
 
 import java.io.Serializable;
+
 import java.rmi.RemoteException;
 
 import javax.jdo.annotations.PersistenceCapable;
 
-import server.observer.IRemoteObservable;
+//import server.observer.IRemoteObservable;
 //import server.observer.IRemoteObserver;
 //import server.observer.IRemoteObservable;
-import server.observer.RemoteObservable;
+//import server.observer.RemoteObservable;
 
 @PersistenceCapable(detachable = "true")
-public class Cancion implements IRemoteObservable
+public class Cancion implements Serializable
 {
 	int idCancion;
 	//
@@ -20,7 +21,7 @@ public class Cancion implements IRemoteObservable
 	String fechalanzamientoCancion;
 	int preciodiaCancion;
 	String letraCancion;
-	private RemoteObservable remoteObservable = new RemoteObservable();
+	//private RemoteObservable remoteObservable = new RemoteObservable();
 	
 	public Cancion(int idCancion, String tituloCancion, float duracionCancion,
 			String fechalanzamientoCancion, int preciodiaCancion,
@@ -82,8 +83,10 @@ public class Cancion implements IRemoteObservable
 		this.letraCancion = letraCancion;
 	}
 	
-	
-
+	public String toString() {
+		return "Cancion: " + tituloCancion;
+	}
+/*
 	@Override
 	public void addRemoteObserver(server.observer.IRemoteObserver observer)
 			throws RemoteException {
@@ -110,6 +113,6 @@ public class Cancion implements IRemoteObservable
 		this.remoteObservable.notifyRemoteObservers(this.tituloCancion);
 		}
 	}
-	
+	*/
 
 }

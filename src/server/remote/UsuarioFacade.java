@@ -2,24 +2,25 @@ package server.remote;
 
 
 import java.rmi.RemoteException;
+
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import server.dao.DBManager;
-import server.dao.UsuarioDAO;
+//import server.dao.DBManager;
+//import server.dao.UsuarioDAO;
 import server.data.data.Usuario;
 import server.data.dto.UsuarioDTO;
 import server.servers.GatewayLogin;
 
 public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 
-	public UsuarioDAO objDao;
+	//public UsuarioDAO objDao;
 	private GatewayLogin objGatewayLogin;
 	
 	public UsuarioFacade() throws RemoteException {
 		super();
-		objDao = new UsuarioDAO();
+		//objDao = new UsuarioDAO();
 		objGatewayLogin = new GatewayLogin();
 		// TODO Auto-generated constructor stub
 	}
@@ -54,9 +55,10 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 		}
 		return true;*/
 		
-		boolean registro = DBManager.getInstance().registro(user, nombre, apellido, tipocuenta);
-		System.out.println(registro);
-		return registro;
+		//boolean registro = DBManager.getInstance().registro(user, nombre, apellido, tipocuenta);
+		//System.out.println(registro);
+		//return registro;
+		return false;
 	}
 	
 	public boolean checkUserExterno(String user, String pass) throws RemoteException
@@ -70,7 +72,7 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	
 	public void registrarseBD(Usuario user) throws RemoteException
 	{
-		objDao.storeUsario(user);
+		//objDao.storeUsuario(user);
 		System.out.println("Registrado");
 	}
 

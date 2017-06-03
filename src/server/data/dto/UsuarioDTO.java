@@ -2,7 +2,7 @@ package server.data.dto;
 
 import java.io.Serializable;
 
-public class UsuarioDTO implements Serializable {
+public class UsuarioDTO {
 	
 	private static final long serialVersionUID = 1L;	
 	private String nombre;

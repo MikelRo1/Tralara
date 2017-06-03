@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Tralala-Server</name>
+	<name>4.2_JDO-DAO_BooksCopies_Server</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -18,7 +18,7 @@
 		<link>
 			<name>bin</name>
 			<type>2</type>
-			<location>C:/Users/ALUMNO/workspace/Tralala-Server/bin</location>
+			<location>C:/Users/ALUMNO/workspace/4.2_JDO-DAO_BooksCopies_Server/bin</location>
 		</link>
 	</linkedResources>
 </projectDescription>

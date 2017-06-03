@@ -1,6 +1,7 @@
 package server.data.factory;
 
 import server.data.data.Pago; 
+
 import server.data.data.Comun; 
 import server.data.data.Ventajoso;
 
