@@ -3,24 +3,26 @@ package server.remote;
 
 import java.rmi.RemoteException;
 
+
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-//import server.dao.DBManager;
-//import server.dao.UsuarioDAO;
 import server.data.data.Usuario;
 import server.data.dto.UsuarioDTO;
+import server.jdo.dao.DBManager;
+import server.jdo.dao.IUsuarioDAO;
+import server.jdo.dao.UsuarioDAO;
 import server.servers.GatewayLogin;
 
 public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 
-	//public UsuarioDAO objDao;
+	public IUsuarioDAO objDao;
 	private GatewayLogin objGatewayLogin;
 	
 	public UsuarioFacade() throws RemoteException {
 		super();
-		//objDao = new UsuarioDAO();
+		objDao = new UsuarioDAO();
 		objGatewayLogin = new GatewayLogin();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,15 +38,13 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	}
 
 	@Override
-	public boolean checkAddUser(String user, String nombre, String apellido, float tipocuenta) throws RemoteException 
+	public boolean checkAddUser(String user) throws RemoteException 
 	{
 		System.out.println("checkAddUser");
-		//List<Usuario> arrayusuarios = new ArrayList<>();
-		//arrayusuarios = objDao.getUsuarios();
+		List<Usuario> arrayusuarios = new ArrayList<>();
+		arrayusuarios = objDao.getUsuarios();
 		//arrayusuarios = DBManager.getInstance().getAllUsuariosTest();
-		
-		
-		/*
+
 		for (int i=0; i<arrayusuarios.size();i++)
 		{
 			if (user.equals(arrayusuarios.get(i).getNombreUsuario()))
@@ -53,12 +53,8 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 				return false;
 			}
 		}
-		return true;*/
-		
-		//boolean registro = DBManager.getInstance().registro(user, nombre, apellido, tipocuenta);
-		//System.out.println(registro);
-		//return registro;
-		return false;
+		return true;
+
 	}
 	
 	public boolean checkUserExterno(String user, String pass) throws RemoteException
@@ -72,8 +68,8 @@ public class UsuarioFacade extends UnicastRemoteObject implements IUsuarioF {
 	
 	public void registrarseBD(Usuario user) throws RemoteException
 	{
-		//objDao.storeUsuario(user);
-		System.out.println("Registrado");
+		DBManager.getInstance().guardarEnBD(user);
+		
 	}
 
 }

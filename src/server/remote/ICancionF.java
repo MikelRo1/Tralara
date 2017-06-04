@@ -15,6 +15,7 @@ public interface ICancionF extends Remote{
 	public AlbumDTO getAlbumDTO() throws RemoteException;
 	public void addFav(int cancion) throws RemoteException;
 	public void playTrack(int cancion) throws RemoteException;
+	public void reproducirBD() throws RemoteException;
 
 }
 

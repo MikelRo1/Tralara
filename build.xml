@@ -12,7 +12,7 @@
 	<property name="server.Usuario" value="TralalaUsuario"/>
 	<property name="server.Cancion" value="TralalaCancion"/>
 	<property name="server.Pago" value="TralalaPago"/>
-	<property name="export.file" value="Tralala2.jar"/>
+	<property name="export.file" value="Tralala.jar"/>
 	<property name="policy.file" location="security/java.policy"/>	
 	
     <!-- Classpath -->
@@ -106,7 +106,7 @@
 	<!-- TARGET : RMI Service Section - export and runServer -->	
 	
 	<target name="export" depends="compile" description="Export the project into a .jar file">
-			<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/ICancionF.class, **/IPagoF.class, **/IUsuarioF.class, **/**DTO.class, **/RemoteObserver.class, **/IRemoteObserver.class"/>
+			<jar destfile="${dist.dir}/${export.file}" basedir="${bin.dir}" includes="**/ICancionF.class, **/IPagoF.class, **/IUsuarioF.class, **/**DTO.class, **/Usuario.class, **/RemoteObserver.class, **/IRemoteObserver.class"/>
     </target>	
 	
 	<!-- TARGET : Running the Server -->	

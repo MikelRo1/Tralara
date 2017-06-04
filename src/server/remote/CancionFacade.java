@@ -4,9 +4,12 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
+import server.data.data.Cancion;
+import server.data.data.Usuario;
 import server.data.dto.AlbumDTO;
 import server.data.dto.ArtistaDTO;
 import server.data.dto.CancionDTO;
+import server.jdo.dao.DBManager;
 
 public class CancionFacade extends UnicastRemoteObject implements ICancionF  {
 
@@ -53,11 +56,20 @@ public class CancionFacade extends UnicastRemoteObject implements ICancionF  {
 		
 	}
 
+	
+	//REPRODUCIR CANCION SIN ACCEDER A LA BD
 	@Override
 	public void playTrack(int cancion) {
 		// TODO Auto-generated method stub
 		System.out.println("PlayTrack: REPRODUCIENDO CANCION ...");
-		System.out.println("[ Viva la vida ]");
+		System.out.println("[ Botella ]");
+	}
+	
+	
+	//REPRODUCIR CANCION ACCEDIENDO A LA BD
+	public void reproducirBD() throws RemoteException
+	{
+		DBManager.getInstance().buscarCancionBD(1);
 	}
 
 }

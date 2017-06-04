@@ -2,12 +2,16 @@ package serverMain;
 
 import java.rmi.Naming;
 
+
+
 import java.rmi.RMISecurityManager;
 import java.rmi.RemoteException;
 import java.util.List;
 
-import server.jdo.dao.ClaseDAO;
-import server.jdo.dao.IClaseDAO;
+import server.jdo.dao.CancionDAO;
+import server.jdo.dao.ICancionDAO;
+import server.jdo.dao.IUsuarioDAO;
+import server.jdo.dao.UsuarioDAO;
 import server.remote.CancionFacade;
 import server.remote.ICancionF;
 import server.remote.IPagoF;
@@ -20,27 +24,36 @@ import server.data.data.Usuario;
 
 public class FinderServer implements IFinder{
 
-	private IClaseDAO daoC;
+	private ICancionDAO daoCan;
+	private IUsuarioDAO daoUsu;
 
 	private static final long serialVersionUID = 1L;
 	public FinderServer()throws RemoteException {
 		super();
 		
-		daoC = new ClaseDAO();
+		daoUsu = new UsuarioDAO();
 		Usuario usu = new Usuario ("ainhoa", "ainhoa", "elola", 222);
-		daoC.storeUsuario(usu);
-		daoC.getUsuarios();
+		daoUsu.storeUsuario(usu);
+		//daoC.getUsuarios();
 		
-		Cancion can = new Cancion (1, "kaixo", 3, "01/01/2016", 10, "aaaaaaaaaa");
-		daoC.storeCancion(can);
-		daoC.getCancion("kaixo");
+		daoCan = new CancionDAO();
+		Cancion can = new Cancion (1, "Botella", 3, "01/01/2016", 10, "aaaaaaaaaa");
+		daoCan.storeCancion(can);
+		//daoC.getCancion("kaixo");
+		
+		Cancion can1 = new Cancion (2, "Udarako", 2, "12/05/2014", 5, "eeeeee");
+		daoCan.storeCancion(can1);
+		
+		Cancion can2 = new Cancion (3, "Fuimos", 4, "22/11/2010", 6, "gggggg");
+		daoCan.storeCancion(can2);
+		
 
 	}
 	
 	@Override
 	public List<Usuario> getUsuarios() throws RemoteException {
 		// TODO Auto-generated method stub
-		List<Usuario> usus = daoC.getUsuarios();
+		List<Usuario> usus = daoUsu.getUsuarios();
 		System.out.println("Returning Usuarios to client ....");
 		return usus;
 	}

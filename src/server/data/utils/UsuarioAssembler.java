@@ -23,9 +23,7 @@ public class UsuarioAssembler {
 		UsuarioDTO dto = new UsuarioDTO();
 		
 		dto.setNombre(usuario.getNombreUsuario());
-		
-		//kontraseña ez dakit pasa behar zaion//
-		
+				
 		return dto;
 	}
 }

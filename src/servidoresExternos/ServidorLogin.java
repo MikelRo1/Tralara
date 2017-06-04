@@ -13,14 +13,6 @@ import java.net.Socket;
 
 public class ServidorLogin {
 	
-	/*private ArrayList<UsuarioDTO> usuarios = new ArrayList<UsuarioDTO>();
-	UsuarioDTO usu1 = new UsuarioDTO();
-	UsuarioDTO usu2 = new UsuarioDTO();
-	UsuarioDTO usu3 = new UsuarioDTO();
-	UsuarioDTO usu4 = new UsuarioDTO();
-	UsuarioDTO usu5 = new UsuarioDTO();
-	 */
-	
 	private static ArrayList<String> usuarios = new ArrayList<String>();
 	
 	private DataInputStream in;
@@ -41,7 +33,7 @@ public class ServidorLogin {
 			this.tcpSocket = socket;
 		    this.in = new DataInputStream(socket.getInputStream());
 			this.out = new DataOutputStream(socket.getOutputStream());
-			//this.start();
+
 		} catch (IOException e) {
 			System.err.println("# EchoService - TCPConnection IO error:" + e.getMessage());
 		}
@@ -55,17 +47,12 @@ public class ServidorLogin {
 	
 
 	public boolean login(String usuario) {
-		//String usuario, String contrasenya
 		
-		//comprobar en la BD que el nombre de usuario es correcto
-		
-		//comprobar en el servidor externo que el nombre de usuario y contraseña son correctas
 		boolean a = false;
-		//ServidorLogin server = new ServidorLogin(socket); //
+
 		for (int i=0; i<this.devolverUsuarios().size(); i++)
 		{
 			if (usuario.equals(this.devolverUsuarios().get(i).toString()))
-			//usuario.equals(server.devolverUsuarios().get(i).getNombre()) && contrasenya.equals(server.devolverUsuarios().get(i).getPassword())
 			{
 				a = true;
 				return true;
@@ -103,13 +90,8 @@ public class ServidorLogin {
 	
 	
 	public static void main(String args[]) {
-		/*if (args.length < 1) {
-			System.err.println(" # Usage: ServidorLogin [PORT]");
-			System.exit(1);
-		}*/
 		
-		//args[1] = Server socket port
-		//int serverPort = Integer.parseInt(args[0]);
+		//Server socket port
 		int serverPort = 4000;
 		
 		System.out.println("ServidorLogin hasiera");
